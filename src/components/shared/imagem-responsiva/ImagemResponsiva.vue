@@ -1,6 +1,5 @@
 <template>
-    <img class="imagem-responsiva" :src="url" :alt="titulo">
-
+    <img class = "imagem-responsiva" :src = "url" :alt = "titulo">
 </template>
 
 <script>
@@ -9,10 +8,8 @@
     }
 </script>
 
-
 <style scoped>
     .imagem-responsiva{
         width:100%;
     }
-
 </style>

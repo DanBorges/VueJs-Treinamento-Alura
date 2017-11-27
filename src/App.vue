@@ -1,11 +1,11 @@
 <template>
-  <div class="corpo">
-    <h1 class="titulo">{{ titulo }}</h1>
+  <div class = "corpo">
+    <h1 class = "titulo">{{ titulo }}</h1>
     <input type = "search" class="filtro" @input="filtro=$event.target.value" placeholder="procure por...">
-    <ul class="lista-fotos">
-      <li class="lista-fotos-item" v-for="foto in fotosComFiltro">
-        <meu-painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
+    <ul class = "lista-fotos">
+      <li class = "lista-fotos-item" v-for="foto in fotosComFiltro">
+        <meu-painel :titulo = "foto.titulo"><!-- criação de componente meu-painel -->
+          <imagem-responsiva :url = "foto.url" :titulo="foto.titulo"/><!-- Criação de componente imagem-responsiva -->
         </meu-painel>
       </li>
     </ul>
@@ -17,17 +17,16 @@
   import ImagemResponsiva from './components/shared/imagem-responsiva/ImagemResponsiva.vue'
   
   export default{
-    
     components:{
-      'meu-painel':Painel,
+      'meu-painel': Painel,
       'imagem-responsiva': ImagemResponsiva
     },
 
     data(){
       return{
         titulo: 'Vue.js Prática',
-          fotos:[],
-          filtro:''
+          fotos: [],
+          filtro: ''
       }
     },
 
@@ -35,7 +34,7 @@
       fotosComFiltro(){
         if(this.filtro){
           let exp = new RegExp(this.filtro.trim(),'i');
-          return this.fotos.filter(foto=>exp.test(foto.titulo));
+          return this.fotos.filter(foto => exp.test(foto.titulo));
         }
         else{
           return this.fotos;
@@ -45,8 +44,8 @@
 
     created(){
       let promisse = this.$http.get('http://localhost:3000/v1/fotos')
-      .then(res=>res.json())
-      .then(fotos=>this.fotos = fotos, err=>console.log(err));
+      .then(res => res.json())
+      .then(fotos => this.fotos = fotos, err => console.log(err));
     }
   }
 </script>
@@ -72,5 +71,3 @@
     display:block;
   }
 </style>
-
-
