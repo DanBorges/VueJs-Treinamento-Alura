@@ -1,12 +1,21 @@
 <template>
-    <div class = "painel">
-        <h2 class = "painel-titulo" @dblclick="visivel =! visivel">{{ titulo }}</h2>
-        <transition name = "painel-fade">
-          <div calss = "painel-conteudo" v-show = "visivel">
-            <slot></slot><!-- fim painel-corpo -->
-          </div>
-        </transition>
-    </div><!-- fim painel -->
+<div class ="painel">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2  @dblclick="visivel =! visivel">{{ titulo }}</h2>  
+        </div>
+
+        <div class="panel-body">
+            <transition name = "painel-fade">
+                <div calss = "painel-conteudo" v-show = "visivel">
+                    <slot></slot><!-- fim painel-corpo -->
+                </div>
+            </transition>
+      </div>
+    </div>
+</div>
+
+
 </template>
 
 <script>

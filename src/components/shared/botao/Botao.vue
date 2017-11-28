@@ -1,5 +1,5 @@
 <template>
-    <button @click="disparaAcao()" class="botao" :class="estiloDoBotao" :type = "tipo">{{ rotulo }}</button>
+    <button @click="disparaAcao()" :class="estiloDoBotao" :type = "tipo">{{ rotulo }}</button>
 </template>
 
 
@@ -35,8 +35,8 @@
 
         computed:{
             estiloDoBotao (){
-                if(this.estilo == "padrao" || this. estilo == "") return 'botao botao-padrao';
-                if(this.estilo == "perigo") return 'botao botao-perigo';
+                if(this.estilo == "padrao" || this. estilo == "") return 'btn btn-outline-primary';
+                if(this.estilo == "perigo") return 'btn btn-outline-danger';
             }
         }
     }
@@ -54,9 +54,21 @@
         font-size: 1.2em;
     }
 
+
+    .btn-outline-primary{
+        margin-top:10px;
+        margin-bottom: 10px
+    }
+
+    .btn-outline-danger{
+        margin-top:10px;
+        margin-bottom: 10px;
+    }
+
     .botao-perigo {
         background: firebrick;
         color: white;
+        
     }
 
     .botao-padrao {

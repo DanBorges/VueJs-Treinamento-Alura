@@ -1,24 +1,27 @@
 <template>
-    <div>
-        <h1 class = "titulo">{{ titulo }}</h1>
-        <input type = "search" class = "filtro" @input="filtro=$event.target.value" placeholder="procure por...">
-        <ul class = "lista-fotos">
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-14">
+          <h1 class = "titulo">{{ titulo }}</h1>
+          <input type = "text" class = "form-control form-control-sm" @input="filtro=$event.target.value" placeholder="procure por..."/>
+          <ul class = "lista-fotos">
             <li class = "lista-fotos-item" v-for="foto in fotosComFiltro">
-                <meu-painel :titulo = "foto.titulo"><!-- criação de componente meu-painel -->
-                    <imagem-responsiva :url = "foto.url" :titulo="foto.titulo"/><!-- Criação de componente imagem-responsiva -->
-                    <meu-botao 
-                        tipo="button" 
-                        rotulo="REMOVER"
-                        @botaoAtivado="remove($event,foto)"
-                        :confirmacao = "true"
-                        estilo = "perigo" />
-
-
-                </meu-painel>
+              <meu-painel :titulo = "foto.titulo"><!-- criação de componente meu-painel -->
+                <imagem-responsiva :url = "foto.url" :titulo="foto.titulo"/><!-- Criação de componente imagem-responsiva -->
+                <meu-botao 
+                  tipo="button" 
+                  rotulo="REMOVER"
+                  @botaoAtivado="remove($event,foto)"
+                  :confirmacao = "true"
+                  estilo = "perigo" />
+              </meu-painel>
             </li>
-        </ul>
+          </ul>
+        </div>
+      </div>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -69,6 +72,7 @@
 </script>
 
 <style>
+
 
   .titulo {
     text-align: center;
