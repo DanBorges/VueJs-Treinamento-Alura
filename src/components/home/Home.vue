@@ -42,7 +42,7 @@
         titulo: 'Vue.js Prática',
           fotos: [],
           filtro: '',
-          mensagem: ''
+          mensagem: '',
       }
     },
 
@@ -73,8 +73,11 @@
                 this.mensagem = 'Não foi possível remover a foto';
               });
         }
-
     },
+
+        
+          
+      
 
     created(){
       let promisse = this.$http.get('http://localhost:3000/v1/fotos')

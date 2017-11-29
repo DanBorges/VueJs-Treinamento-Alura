@@ -1,32 +1,30 @@
 <template>
-<div class ="painel">
+  <div class ="painel">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2  @dblclick="visivel =! visivel">{{ titulo }}</h2>  
+          <button  @click="visivel =! visivel" type="button" class="btn btn-default btn-xs"style="float:right">{{ minimizaOuMaximiza }}</button>
+            <h2>{{ titulo }}</h2>  
         </div>
-
         <div class="panel-body">
-            <transition name = "painel-fade">
-                <div calss = "painel-conteudo" v-show = "visivel">
-                    <slot></slot><!-- fim painel-corpo -->
-                </div>
-            </transition>
+          <transition name = "painel-fade">
+            <div calss = "painel-conteudo" v-show = "visivel">
+              <slot></slot><!-- fim painel-corpo -->
+            </div>
+          </transition>
       </div>
     </div>
-</div>
-
-
+  </div>
 </template>
 
 <script>
   export default{
     props: ['titulo'],
-
     data(){
       return{
-        visivel:true
+        visivel:true,
+        minimizaOuMaximiza: '-'
       }
-    }
+    },
   }
 
 </script>

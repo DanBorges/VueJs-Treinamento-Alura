@@ -1,100 +1,85 @@
-<!-- alurapic/src/components/cadastro/Cadastro.vue -->
-
 <template>
-<div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 class="centralizado">Cadastro</h1>
+                    <h2 class="centralizado"></h2>
+                    <form @submit.prevent="grava()">
+                        <div class="controle">
+                            <label for="titulo">TÍTULO</label>
+                            <input id="titulo" autocomplete="off" v-model.lazy = "foto.titulo">
+                        </div>
 
-    <h1 class="centralizado">Cadastro</h1>
-    <h2 class="centralizado"></h2>
+                        <div class="controle">
+                            <label for="url">URL</label>
+                            <input id="url" autocomplete="off" v-model.lazy = "foto.url">
+                            <imagem-responsiva v-show="foto.url" :url = "foto.url" :titulo = "foto.titulo" />
+                        </div>
 
-    <form @submit.prevent="grava()">
-        <div class="controle">
-            <label for="titulo">TÍTULO</label>
-            <input id="titulo" autocomplete="off" v-model.lazy = "foto.titulo">
-        </div>
+                        <div class="controle">
+                            <label for="descricao">DESCRIÇÃO</label>
+                            <textarea id="descricao" v-model = "foto.descricao"></textarea>
+                        </div>
 
-        <div class="controle">
-            <label for="url">URL</label>
-            <input id="url" autocomplete="off" v-model.lazy = "foto.url">
-            <imagem-responsiva v-show="foto.url" :url = "foto.url" :titulo = "foto.titulo" />
-        </div>
-
-        <div class="controle">
-            <label for="descricao">DESCRIÇÃO</label>
-            <textarea id="descricao" v-model = "foto.descricao"></textarea>
-        </div>
-
-        <div class="centralizado">
-            <meu-botao rotulo="GRAVAR" tipo="submit"/>
-            <router-link to="/"><meu-botao rotulo="VOLTAR" tipo="button"/></router-link>
-        </div>
-
-
-      
-
-        </form>
-
+                        <div class="centralizado">
+                            <meu-botao rotulo="GRAVAR" tipo="submit"/>
+                            <router-link to="/"><meu-botao rotulo="VOLTAR" tipo="button"/></router-link>
+                        </div>
+                    </form>
+                </div>
             </div>
-            </div>
-            </div>
-</div>
+        </div>
+    </div>
 </template>
 
 <script>
-
-import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue'
-import Botao from '../shared/botao/Botao.vue';
-import Foto from '../../domain/foto/Foto'
+import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
+import Botao from "../shared/botao/Botao.vue";
+import Foto from "../../domain/foto/Foto";
 
 export default {
-
   components: {
-
-    'imagem-responsiva': ImagemResponsiva, 
-    'meu-botao': Botao
+    "imagem-responsiva": ImagemResponsiva,
+    "meu-botao": Botao
   },
 
-  data(){
-      return{
-          foto: new Foto()
-        } 
-    },
+  data() {
+    return {
+      foto: new Foto()
+    };
+  },
 
-    methods:{
-        grava(){
-            this.$http
-            .post('http://localhost:3000/v1/fotos',this.foto)
-            .then(() => this.foto = new Foto(), err => console.log(err));
-        }
+  methods: {
+    grava() {
+      this.$http
+        .post("http://localhost:3000/v1/fotos", this.foto)
+        .then(() => (this.foto = new Foto()), err => console.log(err));
     }
-}
-
+  }
+};
 </script>
 <style scoped>
+.centralizado {
+  text-align: center;
+}
+.controle {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+.controle label {
+  display: block;
+  font-weight: bold;
+}
 
-  .centralizado {
-    text-align: center;
-  }
-  .controle {
-    font-size: 1.2em;
-    margin-bottom: 20px;
+.controle label + input,
+.controle textarea {
+  width: 100%;
+  font-size: inherit;
+  border-radius: 5px;
+}
 
-  }
-  .controle label {
-    display: block;
-    font-weight: bold;
-  }
-
- .controle label + input, .controle textarea {
-    width: 100%;
-    font-size: inherit;
-    border-radius: 5px
-  }
-
-  .centralizado {
-    text-align: center;
-  }
-
+.centralizado {
+  text-align: center;
+}
 </style>
