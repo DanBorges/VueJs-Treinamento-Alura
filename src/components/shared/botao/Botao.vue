@@ -65,15 +65,4 @@
         margin-bottom: 10px;
     }
 
-    .botao-perigo {
-        background: firebrick;
-        color: white;
-        
-    }
-
-    .botao-padrao {
-        background: darkcyan;
-        color: white;
-    }
-
 </style>
