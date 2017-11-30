@@ -3,6 +3,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
           <button  @click="disparaAcaoJanela()" :title ="title" type="button" class="btn btn-default btn-xs"style="float:right;width:10%;height:30px;margin-right:8px;">{{ minimizaOuMaximiza }}</button>
+
             <h2>{{ titulo }}</h2>  
         </div>
         <div class="panel-body">
@@ -46,6 +47,7 @@
         }
       }
   },
+
   }
 
 </script>

@@ -76,6 +76,7 @@
     },
 
 
+
     created(){
       let promisse = this.$http.get('http://localhost:3000/v1/fotos')
       .then(res => res.json())
