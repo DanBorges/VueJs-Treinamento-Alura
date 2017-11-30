@@ -8,26 +8,24 @@
 </template>
 
 <script>
+  //Importando componente Menu, onde vai ser passado para ele um array de rotas através do bind(:)
+  import Menu from './components/shared/menu/Menu.vue';
+  import { routes } from './routes';
 
-import Menu from './components/shared/menu/Menu.vue';
-import { routes } from './routes';
-export default{
-
-  components:{
-    'meu-menu' : Menu
-  },
-
-  data(){
-    return{
-      routes
+  export default{
+    components:{
+      //Definindo componente Menu
+      'meu-menu' : Menu
+    },
+    data(){
+      return{
+        routes
+      }
     }
   }
-}
-
 </script>
 
 <style>
-
   .corpo {
     font-family: Helvetica, sans-serif;
     margin: 0 auto;
@@ -38,8 +36,7 @@ export default{
   opacity:0;
 }
 
-.pagina-enter-active, .pagina-leave-active{
-  transition: opacity 0.7s;
-}
-
+  .pagina-enter-active, .pagina-leave-active{
+    transition: opacity 0.7s;
+  }
 </style>
