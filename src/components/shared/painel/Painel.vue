@@ -1,32 +1,51 @@
 <template>
-<div class ="painel">
+  <div class ="painel">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2  @dblclick="visivel =! visivel">{{ titulo }}</h2>  
+          <button  @click="disparaAcaoJanela()" :title ="title" type="button" class="btn btn-default btn-xs"style="float:right;width:10%;height:30px;margin-right:8px;">{{ minimizaOuMaximiza }}</button>
+            <h2>{{ titulo }}</h2>  
         </div>
-
         <div class="panel-body">
-            <transition name = "painel-fade">
-                <div calss = "painel-conteudo" v-show = "visivel">
-                    <slot></slot><!-- fim painel-corpo -->
-                </div>
-            </transition>
+          <transition name = "painel-fade">
+            <div calss = "painel-conteudo" v-show = "visivel">
+              <slot></slot><!-- fim painel-corpo -->
+            </div>
+          </transition>
       </div>
     </div>
-</div>
-
-
+  </div>
 </template>
 
 <script>
   export default{
-    props: ['titulo'],
-
+    props:{
+      titulo:{
+        required:true,
+        type: String
+      }
+    }, 
     data(){
       return{
-        visivel:true
+        visivel:true,
+        minimizaOuMaximiza: '-',
+        title: 'minimizar'
       }
-    }
+    },
+
+    methods:{
+      disparaAcaoJanela(){
+        if(this.visivel == true){
+          this.visivel = false;
+          this.minimizaOuMaximiza = '+';
+          this.title = 'maximizar';
+        }
+        else if(this.visivel ==false){
+            this.visivel = true;
+            this.minimizaOuMaximiza = '-';
+            this.title = 'minimizar';
+        }
+      }
+  },
   }
 
 </script>
@@ -67,6 +86,13 @@
 .painel-fade-enter-active, .painel-fade-leave-active{
   transition: opacity 0.7s;
 }
+
+
+.painel-conteudo {
+    overflow: hidden;
+  }
+
+
 </style>
 
 
