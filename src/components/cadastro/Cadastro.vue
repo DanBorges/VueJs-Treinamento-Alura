@@ -4,7 +4,8 @@
       <div class="row">
         <div class="col-md-4">
           <h1 class="centralizado">Cadastro</h1>
-          <h2 class="centralizado"></h2>
+          <h2 v-if = "foto._id"  class="centralizado"> Alterando</h2>
+          <h2 v-else class = "centralizado"> Incluindo</h2>
           <!-- Chma função grava ao ascionar o botao GRAVAR -->
           <form @submit.prevent="grava()">
             <div class="controle">
@@ -22,7 +23,7 @@
             </div>
             <div class="centralizado">
               <meu-botao rotulo="GRAVAR" tipo="submit"/>
-                <router-link to="/"><meu-botao rotulo="VOLTAR" tipo="button"/></router-link>
+                <router-link :to = "{ name:'home' }"><meu-botao rotulo="VOLTAR" tipo="button"/></router-link>
             </div>
           </form>
         </div>
@@ -36,6 +37,7 @@
   import ImagemResponsiva from "../shared/imagem-responsiva/ImagemResponsiva.vue";
   import Botao from "../shared/botao/Botao.vue";
   import Foto from "../../domain/foto/Foto";
+  import FotoService from "../../domain/foto/FotoService";
 
   export default {
     //define componenetes para serem usados como tag
@@ -47,7 +49,8 @@
     data() {
       return {
         //Cria uma instancia de Foto
-        foto: new Foto()
+        foto: new Foto(),
+        id: this.$route.params.id
       };
     },
 
@@ -55,11 +58,26 @@
       //Método grava
       grava() {
         //Função Rest para adicionar o objeto foto
-        this.$http
-          .post("http://localhost:3000/v1/fotos", this.foto)
-          .then(() => (this.foto = new Foto()), err => console.log(err));
+        this.service
+        .cadastrar(this.foto)
+        .then(() => {
+          if(this.id){
+            this.$router.push({name:'home'});
+          }
+          (this.foto = new Foto())
+        }
+        , err => console.log(err));
+      }
+    },
+
+    created(){
+      this.service = new FotoService(this.$resource);
+      if(this.id){
+        this.service.buscaPorId(this.id)
+        .then(foto => this.foto = foto);
       }
     }
+
   };
 </script>
 

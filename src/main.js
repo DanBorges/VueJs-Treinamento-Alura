@@ -10,6 +10,8 @@ Vue.use (VueResource);
 //Uso dos serviços de rotas di Vue
 Vue.use (VueRouter);
 
+Vue.http.options.root = 'http://localhost:3000';
+
 const router = new VueRouter({
    routes,
    //mode history para não precisar usar 0 # ao trocar de página
