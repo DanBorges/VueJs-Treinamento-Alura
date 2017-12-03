@@ -2,10 +2,11 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-10">
           <h1 class="centralizado">Cadastro</h1>
           <h2 v-if = "foto._id"  class="centralizado"> Alterando</h2>
           <h2 v-else class = "centralizado"> Incluindo</h2>
+          <p class = "centralizado">{{ mensagem }}</p>
           <!-- Chma função grava ao ascionar o botao GRAVAR -->
           <form @submit.prevent="grava()">
             <div class="controle">
@@ -50,7 +51,8 @@
       return {
         //Cria uma instancia de Foto
         foto: new Foto(),
-        id: this.$route.params.id
+        id: this.$route.params.id,
+        mensagem: '',
       };
     },
 
@@ -63,10 +65,11 @@
         .then(() => {
           if(this.id){
             this.$router.push({name:'home'});
+             this.mensagem = 'Foto cadastrada com sucesso'
           }
           (this.foto = new Foto())
         }
-        , err => console.log(err));
+        , err => this.mensagem = err.message);
       }
     },
 

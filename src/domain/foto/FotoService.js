@@ -9,17 +9,25 @@ export default class FotoService {
 			.query()
 			.then(res => res.json(), err =>{
 				console.log(err);
-				throw new Error("Não foi possivel carregar as fotos, tente mais tarde");
+				throw new Error("Não foi possível carregar as fotos, tente mais tarde");
 			});
 	}
 
 	cadastrar(foto){
 		if(foto._id){
 			return this._resource.update({id: foto._id}, foto)
+			.then(null, err=>{
+				console.log(err);
+				throw new Error("Não foi possível alterar a foto, tente mais tarde");
+			})
 		}
 
 		else{
-			return this._resource.save(foto);
+			return this._resource.save(foto)
+			.then(null, err=> {
+				console.log(err);
+				throw new Error ("Não foi possível cadastrar a foto, tente mais tarde");
+			});
 		}
 	}
 
@@ -27,7 +35,7 @@ export default class FotoService {
 		return this._resource.delete({ id })
 		.then(null, err=>{
 			console.log(err);
-			throw new Error ("Não foi possivel deletar a foto");
+			throw new Error ("Não foi possível deletar a foto");
 		}) 
 	}
 
