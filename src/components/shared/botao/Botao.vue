@@ -43,8 +43,8 @@
 		computed:{
 			//Retorna o tipo do botão, retornando a class seu estilo, através do valor, passado na tag <meu-botao> de home
     	estiloDoBotao (){
-      	if(this.estilo == "padrao" || this. estilo == "") return 'btn btn-outline-primary';
-        if(this.estilo == "perigo") return 'btn btn-outline-danger';
+      	if(this.estilo == "padrao" || this. estilo == "") return 'btn waves-effect waves-teal botao-alterar';
+        if(this.estilo == "perigo") return 'btn waves-effect waves-teal botao-deletar';
       }
     }
 	}
@@ -59,13 +59,17 @@
 		font-size: 1.2em;
 	}
 
-	.btn-outline-primary{
-		margin-top:10px;
-		margin-bottom: 10px
-	}
-
-	.btn-outline-danger{
+	.botao-alterar{
 		margin-top:10px;
 		margin-bottom: 10px;
+		background-color: rgba(117, 166, 215, 1);
 	}
+
+	.botao-deletar{
+		margin-top:10px;
+		margin-bottom: 10px;
+		background-color: rgba(236, 70, 70, 1);
+	}
+
+
 </style>

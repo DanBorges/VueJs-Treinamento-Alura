@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col s14">
           <!-- Exibe a interpolação de titulo recebido da função data() -->
           <h1 class = "titulo">{{ titulo }}</h1>
           <p v-show = "mensagem" class= "titulo">{{ mensagem }}</p>

@@ -1,21 +1,23 @@
 <template>
-  <div class ="painel">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-          <!-- Ao clicar no botão dispara a função disparaAcaoJanela, que ierá altera a visibilidade da foto e alterar o icone de maximizar ou minimizar -->
-          <button  @click="disparaAcaoJanela()" :title ="titleBotao" type="button" class="btn btn-default btn-xs"style="float:right;width:10%;height:30px;margin-right:8px;">{{ minimizaOuMaximiza }}</button>
-            <h2>{{ titulo }}</h2>  
+
+  <div class="painel">
+    <div class="card horizontal">  
+      <div class="card-stacked">
+        <button  @click="disparaAcaoJanela()" :title ="titleBotao" type="button" class="btn btn-default btn-xs minimiza-maximiza "> <center>{{ minimizaOuMaximiza }}</center> </button> 
+        <div class="card-content">
+          <b><p>{{ titulo }}</p></b>
         </div>
-        <div class="panel-body">
-          <transition name = "painel-fade">
-            <!-- Usa a diretiva v-show, mostrando o conteúdo do painel só se o atributo visivel, definido em data, seja TRUE -->
-            <div calss = "painel-conteudo" v-show = "visivel">
-              <slot></slot>
-            </div>
-          </transition>
       </div>
     </div>
+
+    <transition name="painel-fade">
+      <!-- Usa a diretiva v-show, mostrando o conteúdo do painel só se o atributo visivel, definido em data, seja TRUE -->
+      <div calss="painel-conteudo" v-show = "visivel">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
+
 </template>
 
 <script>
@@ -62,7 +64,7 @@
     padding: 0 auto;
     border: solid 2px grey;
     display: inline-block;
-    margin: 5px;
+    margin: 25px;
     box-shadow: 5px 5px 10px grey;
     width: 200px;
     height: 100%;
@@ -70,14 +72,19 @@
     text-align: center;
   }
 
-  .painel .painel-titulo {
-    text-align: center;
-    border: solid 2px;
-    background: lightblue;
-    margin: 0 0 15px 0;
-    padding: 10px;
-    text-transform: uppercase;
+
+  .minimiza-maximiza{
+    width: 30px;
+    margin-top:5px;
+    margin-left: 120px;
+    float: right;
+    
   }
+
+  .painel.painel-conteudo {
+    height: 200px;
+    }
+
 
   *{
     box-shadow:5px 5px 5px
@@ -91,9 +98,6 @@
     transition: opacity 0.7s;
   }
 
-  .painel-conteudo {
-      overflow: hidden;
-    }
 </style>
 
 

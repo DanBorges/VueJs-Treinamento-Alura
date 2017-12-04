@@ -96,6 +96,9 @@
     display: block;
     font-weight: bold;
   }
+  .imagem-responsiva{
+    height: 100%;
+  }
 
   .controle label + input,
   .controle textarea {
