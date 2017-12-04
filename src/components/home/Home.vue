@@ -2,12 +2,12 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col s14">
+        <div class="col s18">
           <!-- Exibe a interpolação de titulo recebido da função data() -->
           <h1 class = "titulo">{{ titulo }}</h1>
           <p v-show = "mensagem" class= "titulo">{{ mensagem }}</p>
-         <!-- Envia para o computed o que for digitado instântaneamnete no input, atraves do target  -->
-         <input type = "text" class = "form-control form-control-sm" @input="filtro=$event.target.value" placeholder="procure por..."/>
+          <!-- Envia para o computed o que for digitado instântaneamnete no input, atraves do target  -->
+          <input type = "text" class = "form-control form-control-sm" @input="filtro=$event.target.value" placeholder="procure por..."/>
           <ul class = "lista-fotos">
             <!-- Através da diretiva v-for pervorre todas as fotos -->
             <li class = "lista-fotos-item" v-for="foto in fotosComFiltro">

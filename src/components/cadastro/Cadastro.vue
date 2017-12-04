@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col-md-10">
+        <div class="col s18">
           <h1 class="centralizado">Cadastro</h1>
           <h2 v-if = "foto._id"  class="centralizado"> Alterando</h2>
           <h2 v-else class = "centralizado"> Incluindo</h2>

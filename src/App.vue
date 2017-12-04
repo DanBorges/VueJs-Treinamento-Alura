@@ -19,6 +19,7 @@
     },
     data(){
       return{
+        //filtra menus com status = true
         routes: routes.filter(route => route.menu)
       }
     }
