@@ -4,18 +4,20 @@
       <div class="row">
         <div class="col s18">
           <h1 class="centralizado">Cadastro</h1>
-          <h2 v-if = "foto._id"  class="centralizado"> Alterando</h2>
-          <h2 v-else class = "centralizado"> Incluindo</h2>
+          <h4 v-if = "foto._id"  class="centralizado"> Alterando</h4>
+          <h4 v-else class = "centralizado"> Incluindo</h4>
           <p class = "centralizado">{{ mensagem }}</p>
           <!-- Chma função grava ao ascionar o botao GRAVAR -->
           <form @submit.prevent="grava()">
             <div class="controle">
               <label for="titulo">TÍTULO</label>
-              <input id="titulo" autocomplete="off" v-model.lazy = "foto.titulo">
+              <input data-vv-as = "Título" name = "titulo" v-validate data-vv-rules = "required|min:3|max:30" id="titulo" autocomplete="off" v-model = "foto.titulo">
+              <span class = "erro" v-show="errors.has('titulo')"> {{ errors.first('titulo') }} </span>
             </div>
             <div class="controle">
               <label for="url">URL</label>
-              <input id="url" autocomplete="off" v-model.lazy = "foto.url">
+              <input name = "url" v-validate data-vv-rules = "required" id="url" autocomplete="off" v-model = "foto.url">
+              <span class = "erro" v-show="errors.has('url')"> {{ errors.first('url') }} </span>
               <imagem-responsiva v-show="foto.url" :url = "foto.url" :titulo = "foto.titulo" />
             </div>   
             <div class="controle">
@@ -59,17 +61,21 @@
     methods: {
       //Método grava
       grava() {
-        //Função Rest para adicionar o objeto foto
-        this.service
-        .cadastrar(this.foto)
-        .then(() => {
-          if(this.id){
-            this.$router.push({name:'home'});
-             this.mensagem = 'Foto cadastrada com sucesso'
+        this.$validator
+        .validateAll()
+        .then(success => {
+          if(success){
+            //Função Rest para adicionar o objeto foto
+            this.service
+            .cadastrar(this.foto)
+            .then(() => {
+              if(this.id){
+                this.$router.push({name:'home'});
+              }
+              (this.foto = new Foto())
+            }, err => this.mensagem = err.message);
           }
-          (this.foto = new Foto())
-        }
-        , err => this.mensagem = err.message);
+        });
       }
     },
 
@@ -109,4 +115,9 @@
   .centralizado {
     text-align: center;
   }
+
+  .erro{
+    color: red;
+  }
+
 </style>

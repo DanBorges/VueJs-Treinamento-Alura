@@ -1,6 +1,8 @@
-//Importando componentes que vão ser rotas na aplicação
 import Home from './components/home/Home.vue';
 import Cadastro from './components/cadastro/Cadastro.vue';
+
+//const Cadastro = () => System.import('./components/cadastro/Cadastro.vue');
+console.log("CADASTROOOO:"+ Cadastro);
 
 export const routes = [
     //Definindo rotas
